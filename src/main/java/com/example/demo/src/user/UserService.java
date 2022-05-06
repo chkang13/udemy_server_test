@@ -3,6 +3,7 @@ package com.example.demo.src.user;
 
 import com.example.demo.config.BaseException;
 
+import com.example.demo.src.user.model.DeleteUserReq;
 import com.example.demo.src.user.model.PatchUserReq;
 import com.example.demo.src.user.model.PostUserReq;
 import com.example.demo.src.user.model.PostUserRes;
@@ -63,6 +64,22 @@ public class UserService {
             int result = userDao.modifyUserName(patchUserReq);
             if(result == 0){
                 throw new BaseException(MODIFY_FAIL_USERNAME);
+            }
+        } catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public void modifyUserStatus(DeleteUserReq deleteUserReq) throws BaseException {
+
+        if(userProvider.checkUserIdx(deleteUserReq.getUserIdx()) ==0){
+            throw new BaseException(USERS_EMPTY_USER_ID);
+        }
+
+        try{
+            int result = userDao.modifyUserStatus(deleteUserReq);
+            if(result == 0){
+                throw new BaseException(DELETE_USER_FAIL);
             }
         } catch(Exception exception){
             throw new BaseException(DATABASE_ERROR);

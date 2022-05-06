@@ -35,7 +35,6 @@ public class UserController {
     }
 
 
-
     /**
      * 회원 조회 API
      * [GET] /users
@@ -123,6 +122,23 @@ public class UserController {
 
             String result = "";
         return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    /**
+     * 유저 삭제 API
+     */
+    @ResponseBody
+    @PatchMapping("/{userIdx}/status") // (PATCH) 127.0.0.1:9000/users/:userIdx
+    public BaseResponse<String> modifyUserStatus(@PathVariable("userIdx") int userIdx){
+        try {
+            DeleteUserReq deleteUserReq = new DeleteUserReq(userIdx);
+            userService.modifyUserStatus(deleteUserReq);
+
+            String result = "유저 삭제되었습니다";
+            return new BaseResponse<>(result);
         } catch (BaseException exception) {
             return new BaseResponse<>((exception.getStatus()));
         }

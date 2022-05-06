@@ -2,6 +2,7 @@ package com.example.demo.src.user;
 
 
 import com.example.demo.config.BaseException;
+import com.example.demo.src.user.model.DeleteUserRes;
 import com.example.demo.src.user.model.GetUserRes;
 import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
@@ -50,6 +51,7 @@ public class UserProvider {
     }
 
 
+
     public int checkEmail(String email) throws BaseException{
         try{
             return userDao.checkEmail(email);
@@ -58,6 +60,11 @@ public class UserProvider {
         }
     }
 
-
-
+    public int checkUserIdx(int userIdx) throws BaseException{
+        try{
+            return userDao.checkUserIdx(userIdx);
+        } catch (Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }

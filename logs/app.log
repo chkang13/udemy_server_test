@@ -1,2 +1,6 @@
 18:19:36.118 WARN  [File:TestController.java] [Func:getAll] [Line:35] [Message:Warn Level í…ŒìŠ¤íŠ¸]- Warn Level í…ŒìŠ¤íŠ¸
 18:19:36.121 ERROR [File:TestController.java] [Func:getAll] [Line:38] [Message:ERROR Level í…ŒìŠ¤íŠ¸]- ERROR Level í…ŒìŠ¤íŠ¸
+01:41:49.859 WARN  [File:TestController.java] [Func:getAll] [Line:35] [Message:Warn Level Å×½ºÆ®]- Warn Level Å×½ºÆ®
+01:41:49.862 ERROR [File:TestController.java] [Func:getAll] [Line:38] [Message:ERROR Level Å×½ºÆ®]- ERROR Level Å×½ºÆ®
+22:42:08.154 WARN  [File:TestController.java] [Func:getAll] [Line:35] [Message:Warn Level Å×½ºÆ®]- Warn Level Å×½ºÆ®
+22:42:08.158 ERROR [File:TestController.java] [Func:getAll] [Line:38] [Message:ERROR Level Å×½ºÆ®]- ERROR Level Å×½ºÆ®

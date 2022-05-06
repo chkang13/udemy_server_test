@@ -1,9 +1,7 @@
 package com.example.demo.src.user;
 
 
-import com.example.demo.src.user.model.GetUserRes;
-import com.example.demo.src.user.model.PatchUserReq;
-import com.example.demo.src.user.model.PostUserReq;
+import com.example.demo.src.user.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -57,6 +55,8 @@ public class UserDao {
                 getUsersByIdxParams);
     }
 
+
+
     public int createUser(PostUserReq postUserReq){
         String createUserQuery = "insert into User (name, nickName, phone, email, password) VALUES (?,?,?,?,?)";
         Object[] createUserParams = new Object[]{postUserReq.getName(), postUserReq.getNickName(),postUserReq.getPhone(), postUserReq.getEmail(), postUserReq.getPassword()};
@@ -82,7 +82,23 @@ public class UserDao {
         return this.jdbcTemplate.update(modifyUserNameQuery,modifyUserNameParams);
     }
 
+    /**
+    * 유저 삭제
+    */
+    public int modifyUserStatus(DeleteUserReq deleteUserReq){
+    String modifyUserStatusQuery = "update User set status = 'INACTIVE' where userIdx = ? ";
+    Object[] modifyUserStatusParams = new Object[]{deleteUserReq.getUserIdx()};
 
+    return this.jdbcTemplate.update(modifyUserStatusQuery,modifyUserStatusParams);
+    }
 
+    public int checkUserIdx(int userIdx){
+        String checkuserIdxQuery = "select exists(select userIdx from User where userIdx = ?)";
+        int checkuserIdxParams = userIdx;
+        return this.jdbcTemplate.queryForObject(checkuserIdxQuery,
+                int.class,
+                checkuserIdxParams);
+
+    }
 
 }
