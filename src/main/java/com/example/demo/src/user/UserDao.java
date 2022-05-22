@@ -87,8 +87,8 @@ public class UserDao {
 
 
     public int createUser(PostUserReq postUserReq){
-        String createUserQuery = "insert into User (name, nickName, phone, email, password) VALUES (?,?,?,?,?)";
-        Object[] createUserParams = new Object[]{postUserReq.getName(), postUserReq.getNickName(),postUserReq.getPhone(), postUserReq.getEmail(), postUserReq.getPassword()};
+        String createUserQuery = "insert into User (name, nickName, email, pwd, profileImgUrl) VALUES (?,?,?,?,?)";
+        Object[] createUserParams = new Object[]{postUserReq.getName(), postUserReq.getNickName(),postUserReq.getEmail(), postUserReq.getPwd(), postUserReq.getProfileImgUrl()};
         this.jdbcTemplate.update(createUserQuery, createUserParams);
 
         String lastInserIdQuery = "select last_insert_id()";
@@ -127,6 +127,20 @@ public class UserDao {
         return this.jdbcTemplate.queryForObject(checkuserIdxQuery,
                 int.class,
                 checkuserIdxParams);
+
+    }
+
+    public com.example.demo.src.user.model.User getPwd(PostLoginReq postLoginReq){
+        String getPwdQuery = "select userIdx, name, nickName, email, pwd from User where email=?";
+        String getPwdParams = postLoginReq.getEmail();
+        return this.jdbcTemplate.queryForObject(getPwdQuery,
+                (rs, rowNum) -> new User(
+                        rs.getInt("userIdx"),
+                        rs.getString("name"),
+                        rs.getString("nickName"),
+                        rs.getString("email"),
+                        rs.getString("pwd")),
+                getPwdParams);
 
     }
 

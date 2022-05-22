@@ -57,4 +57,12 @@ public class PostProvider {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    public int checkPostIdx(int postIdx) throws BaseException{
+        try{
+            return postDao.checkPostIdx(postIdx);
+        } catch (Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }

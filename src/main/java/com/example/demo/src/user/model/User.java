@@ -11,8 +11,6 @@ public class User {
     private int userIdx;
     private String name;
     private String nickName;
-    private String phone;
     private String email;
-    private String password;
-    private String status;
+    private String pwd;
 }
